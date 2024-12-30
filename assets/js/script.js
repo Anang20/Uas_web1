@@ -1,22 +1,23 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Mobile menu toggle
-    const mobileMenuBtn = document.createElement('button');
-    mobileMenuBtn.classList.add('mobile-menu-btn');
-    mobileMenuBtn.innerHTML = `
-        <span></span>
-        <span></span>
-        <span></span>
-    `;
-    document.querySelector('.navbar').appendChild(mobileMenuBtn);
+    // hamburger menu
+    const burger = document.querySelector('.burger');
+    const nav = document.querySelector('.nav-links');
+    const navLinks = document.querySelectorAll('.nav-links li');
 
-    const navLinks = document.querySelector('.nav-links');
-    const authButtons = document.querySelector('.auth-buttons');
+    burger.addEventListener('click', () => {
+        nav.classList.toggle('nav-active');
 
-    mobileMenuBtn.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        authButtons.classList.toggle('active');
+        navLinks.forEach((link, index) => {
+            if (link.style.animation) {
+                link.style.animation = '';
+            } else {
+                link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
+            }
+        });
+
+        burger.classList.toggle('toggle');
     });
-
+    
     // slider brand
     const brandSliderTrack = document.querySelector('.brands-slider-track');
     const images = Array.from(brandSliderTrack.children);
