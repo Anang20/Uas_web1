@@ -3,8 +3,14 @@
     --text-primary: #1A1A1A;
     --text-secondary: #666666;
     --background: #FFFFFF;
+    --background-primary: #FFC7001A;
     --background-secondary: #F8F8F8;
     --border: #E5E5E5;
+    --text-xs: 0.75rem;
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.25rem;
 }
 
 * {
@@ -103,11 +109,9 @@ body {
     position: absolute;
     width: 800px;
     height: 800px;
-    background: var(--primary);
-    opacity: 0.1;
-    border-radius: 50%;
-    top: -400px;
-    right: -200px;
+    background: url('/assets/images/big-logo.svg') no-repeat;
+    right: -190px;
+    top: -20px;
 }
 
 .hero-container {
@@ -134,6 +138,12 @@ body {
     margin-bottom: 40px;
 }
 
+.wrap-search-box {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
 .search-box {
     background: var(--background);
     padding: 24px;
@@ -142,25 +152,30 @@ body {
     display: grid;
     grid-template-columns: repeat(3, 1fr) auto;
     gap: 16px;
+    width: 80%;
 }
 
-.search-input {
-    position: relative;
+.search-input-group {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
 }
 
-.search-input img {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
+.search-input-group p {
+    font-size: var(--text-base);
+    font-weight: 600;
+    opacity: 0.7;
 }
 
-.search-input input {
-    width: 100%;
-    padding: 12px 12px 12px 40px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    font-size: 14px;
+.search-input-group input {
+    border: none;
+    opacity: 0.7;
+    font-size: var(--text-sm);
+    font-weight: 400;
+}
+
+.search-input-group input:focus {
+    outline: none;
 }
 
 .hero-image img {
@@ -196,7 +211,7 @@ body {
 .step-icon {
     width: 64px;
     height: 64px;
-    background: var(--primary);
+    background: var(--background-primary);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -297,7 +312,7 @@ body {
 .feature-icon {
     width: 48px;
     height: 48px;
-    background: var(--primary);
+    background: var(--background-primary);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -553,6 +568,10 @@ footer {
 
     .steps-grid {
         grid-template-columns: 1fr;
+    }
+
+    .features-image {
+        display: none;
     }
     
     .wrap-cars-image {

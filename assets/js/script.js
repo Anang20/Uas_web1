@@ -44,6 +44,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
     animateSlider();
 
+    function generateStars(rating) {
+        const fullStars = Math.floor(rating); // Bintang penuh
+        const emptyStars = 5 - fullStars; // Bintang kosong
+        let starsHTML = '';
+    
+        // Menambahkan bintang penuh
+        for (let i = 0; i < fullStars; i++) {
+            starsHTML += '★'; // Bintang penuh
+        }
+        
+        // Menambahkan bintang kosong jika perlu
+        for (let i = 0; i < emptyStars; i++) {
+            starsHTML += '☆'; // Bintang kosong
+        }
+    
+        return starsHTML;
+    }
+
     // Car data
     const cars = [
         {
@@ -125,6 +143,7 @@ document.addEventListener('DOMContentLoaded', function() {
     cars.forEach(car => {
         const carCard = document.createElement('div');
         carCard.classList.add('car-card');
+        const starsHTML = generateStars(car.rating);
         carCard.innerHTML = `
             <div class="wrap-cars-image">
                 <img src="${car.image}" alt="${car.name}">
@@ -134,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <h3>${car.name}</h3>
                     <div class="rating">
                         <span>${car.rating}</span>
-                        <div class="stars">★★★★★</div>
+                        <div class="stars">${starsHTML}</div>
                         <span>(${car.reviews} reviews)</span>
                     </div>
                 </div>
@@ -152,6 +171,54 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         `;
         carsGrid.appendChild(carCard);
+    });
+
+    // testimonial data
+    const testimonials = [
+        {
+            name: 'Alya Putri',
+            image: './assets/images/avatar/avatar-1.png',
+            rating: 5,
+            review: 'Pengalaman pertama sewa mobil di car prime sangat memuaskan! Proses pemesanan sangat mudah dan cepat, serta pilihan mobilnya banyak. Mobil yang saya sewa dalam kondisi prima dan pengemudi sangat profesional.',
+            from: 'Jakarta Selatan'
+        },
+        {
+            name: 'Anang Syah Amirul Haqim',
+            image: './assets/images/avatar/avatar-2.png',
+            rating: 4.9,
+            review: 'Saya menggunakan car prime untuk perjalanan bisnis dan sangat senang dengan layanan yang diberikan. Mobilnya bersih dan nyaman, tetapi saya berharap harga sewa sedikit lebih terjangkau untuk jangka waktu panjang.',
+            from: 'Jepara'
+        },
+        {
+            name: 'Nadia Aulia',
+            image: './assets/images/avatar/avatar-3.png',
+            rating: 5,
+            review: 'Car prime benar-benar memudahkan perjalanan saya! Proses pemesanannya sangat praktis dan mobil yang disediakan sesuai dengan yang diiklankan. Hanya saja, pengantaran mobil sedikit terlambat, namun tetap memuaskan.',
+            from: 'Tangerang Selatan'
+        },
+    ];
+
+    //mapping testimonial data
+    const testimonialsGrid = document.querySelector('.testimonials-grid');
+    testimonials.forEach(testimonial => {
+        const testimonialCard = document.createElement('div');
+        testimonialCard.classList.add('car-card');
+        const starsHTML = generateStars(testimonial.rating);
+        testimonialCard.innerHTML = `
+            <div class="testimonial-card">
+                <div class="testimonial-rating">${testimonial.rating.toFixed(1)}</div>
+                <div class="stars">${starsHTML}</div>
+                <p>${testimonial.review}</p>
+                <div class="testimonial-author">
+                    <img src="${testimonial.image}" alt="Charlie Johnson">
+                    <div>
+                        <h4>${testimonial.name}</h4>
+                        <p>${testimonial.from}</p>
+                    </div>
+                </div>
+            </div>
+        `;
+        testimonialsGrid.appendChild(testimonialCard);
     });
 
     // Smooth scroll for navigation links
