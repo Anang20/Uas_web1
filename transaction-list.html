@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarPrime - Daftar Transaksi</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar container">
+            <div class="logo">
+                <img src="./assets/images/logo.svg" alt="CarPrime">
+            </div>
+            <ul class="nav-links">
+                <li><a href="./index.html">Beranda</a></li>
+                <li><a href="./profile.html">Profil</a></li>
+                <li><a href="./transaction-list.html">Transaksi</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <button class="btn-primary" onclick="window.location.href = '/login.html'">Login</button>
+            </div>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="transaction-list container">
+            <div class="transaction-list-card">
+                <h1>Daftar Transaksi</h1>
+                <div class="table-wrapper">
+                    <table id="transactionTable">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Tanggal</th>
+                                <th>No VA</th>
+                                <th>Metode Pembayaran</th>
+                                <th>Nama Lengkap</th>
+                                <th>Mobil</th>
+                                <th>Gambar</th>
+                                <th>Biaya Sewa/hari</th>
+                                <th>Lama Sewa/hari</th>
+                                <th>Total Tagihan</th>
+                                <th>Status</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transactionBody"></tbody>
+                    </table>
+                </div>
+                <ul class="pagination" id="pagination"></ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-info">
+                <img src="./assets/images/logo.svg" alt="CarPrime">
+                <p>Kepuasan pelanggan adalah tujuan utama kami</p>
+                <div class="contact">
+                    <p>+62 896 700 686 39</p>
+                    <p>Carprime@gmail.com</p>
+                </div>
+            </div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h3>Produk Kami</h3>
+                    <ul>
+                        <li><a href="#">List Mobil</a></li>
+                        <li><a href="#">Paket</a></li>
+                        <li><a href="#">Fitur</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Sumber Daya</h3>
+                    <ul>
+                        <li><a href="#">Pusat Bantuan</a></li>
+                        <li><a href="#">Panduan</a></li>
+                        <li><a href="#">Jaringan Mitra</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Tentang Kami</h3>
+                    <ul>
+                        <li><a href="#">Mengapa Pilih Kita</a></li>
+                        <li><a href="#">Pernyataan Misik</a></li>
+                        <li><a href="#">Pesan Online</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Ikuti Kami</h3>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/anangsyahamirulhaqim.haqim/" target="_blank"><img src="./assets/images/icons/facebook.svg" alt="Facebook"></a>
+                        <a href="https://www.instagram.com/anangsyah20_/" target="_blank"><img src="./assets/images/icons//instagram.svg" alt="Instagram"></a>
+                        <a href="https://www.youtube.com/@anangsyahamirulhaqim_3897" target="_blank"><img src="./assets/images/icons/youtube.svg" alt="Youtube"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>© anangsyah 2024 - All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="./assets/js/script.js"></script>
+    <script src="./assets/js/transaction-list.js"></script>
+</body>
+</html>
