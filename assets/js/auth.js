@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('email').value = 'user@gmail.com';
+    document.getElementById('password').value = '12345';
+
     document.getElementById('loginForm').addEventListener('submit', function(event) {
         event.preventDefault(); // Mencegah pengiriman form secara default
     
