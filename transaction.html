@@ -41,7 +41,7 @@
 
     <main>
         <section class="transaction container">
-            <div class="form-container">
+            <form class="form-container">
                 <!-- Billing Info Section -->
                 <div class="section">
                     <h2 class="section-title">Billing Info</h2>
@@ -50,20 +50,24 @@
                     
                     <div class="form-grid">
                         <div class="form-group">
-                            <label class="form-label">Nama</label>
-                            <input type="text" class="form-input" placeholder="Nama">
+                            <label class="form-label">Nama Lengkap</label>
+                            <input id="full-name" type="text" class="form-input" placeholder="Nama Lengkap" required>
                         </div>
                         <div class="form-group">
                             <label class="form-label">No. HP</label>
-                            <input type="text" class="form-input" placeholder="No. HP">
+                            <input id="phone-number" type="text" class="form-input" placeholder="No. HP" required>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Alamat</label>
-                            <input type="text" class="form-input" placeholder="Alamat">
+                            <label class="form-label">NIK</label>
+                            <input id="nik" type="text" class="form-input" placeholder="NIK" required>
                         </div>
                         <div class="form-group">
                             <label class="form-label">Kota</label>
-                            <input type="text" class="form-input" placeholder="Kota">
+                            <input id="city" type="text" class="form-input" placeholder="Kota" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Alamat</label>
+                            <input id="address" type="text" class="form-input" placeholder="Alamat" required>
                         </div>
                     </div>
                 </div>
@@ -74,58 +78,29 @@
                     <p class="section-subtitle">Pilih tanggal rental anda</p>
                     <p class="step">Step 2 dari 4</p>
     
-                    <!-- Penjemputan -->
                     <div class="radio-group">
-                        <label class="radio-label">
-                            <input type="radio" name="rental-type" checked>
-                            Penjemputan
-                        </label>
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label class="form-label">Lokasi</label>
-                                <select class="form-select">
-                                    <option>Pilih Kota</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Tanggal</label>
-                                <select class="form-select">
-                                    <option>Pilih Tanggal</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Jam</label>
-                                <select class="form-select">
-                                    <option>Pilih Jam</option>
-                                </select>
-                            </div>
+                        <div class="metode-rental">
+                            <label class="radio-label">
+                                <input id="penjemputan" type="radio" name="rental-type" checked required>
+                                Penjemputan
+                            </label>
+                            <label class="radio-label">
+                                <input id="drop-off" type="radio" name="rental-type" required>
+                                Drop - Off
+                            </label>
                         </div>
-                    </div>
-    
-                    <!-- Drop-Off -->
-                    <div class="radio-group">
-                        <label class="radio-label">
-                            <input type="radio" name="rental-type">
-                            Drop - Off
-                        </label>
                         <div class="form-grid">
                             <div class="form-group">
                                 <label class="form-label">Lokasi</label>
-                                <select class="form-select">
-                                    <option>Pilih Kota</option>
-                                </select>
+                                <input id="location" type="text" class="form-input" placeholder="Lokasi" required>
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Tanggal</label>
-                                <select class="form-select">
-                                    <option>Pilih Tanggal</option>
-                                </select>
+                                <input id="rental-date" class="form-select" type="datetime-local" required>
                             </div>
                             <div class="form-group">
-                                <label class="form-label">Jam</label>
-                                <select class="form-select">
-                                    <option>Pilih Jam</option>
-                                </select>
+                                <label class="form-label">Lama Sewa/hari</label>
+                                <input id="rent-period" class="form-select" type="number" required>
                             </div>
                         </div>
                     </div>
@@ -149,7 +124,7 @@
     
                     <div class="checkbox-group">
                         <label class="checkbox-label">
-                            <input type="checkbox">
+                            <input type="checkbox" required>
                             Terima syarat dan ketentuan
                         </label>
                     </div>
@@ -164,7 +139,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
     
             <div class="rental-detail">
              <button class="btn-text" onclick="window.location.href='./transaction-list.html'">Lihat Daftar Transaksi →</button>
@@ -174,32 +149,60 @@
                 </div>
     
                 <div class="car-info">
-                    <div class="car-image">
-                        <!-- Replace with actual car image -->
+                    <div class="car-image" id="detail-image-car">
+                       
                     </div>
                     <div class="car-details">
-                        <h3>All New Avanza</h3>
-                        <p class="section-subtitle">Toyota</p>
+                        <h3 id="rental-detail-car-name">Toyota Alphard</h3>
+                    </div>
+                </div>
+                <div class="rentail-detail-car-spec">
+                    <p>Spesifikasi</p>
+                    <div class="car-specs">
+                        <div class="car-spec">
+                            <img src="./assets/images/icons/passenger.svg" alt="Passenger">
+                            <span id="rental-detail-passenger"></span>
+                        </div>
+                        <div class="car-spec">
+                            <img src="./assets/images/icons/transmision.svg" alt="Transmission">
+                            <span id="rental-detail-transmission"></span>
+                        </div>
+                        <div class="car-spec">
+                            <img src="./assets/images/icons/cooling.svg" alt="Cooling">
+                            <span id="rental-detail-cooling"></span>
+                        </div>
+                        <div class="car-spec">
+                            <img src="./assets/images/icons/door.svg" alt="Door">
+                            <span id="rental-detail-door"></span>
+                        </div>
                     </div>
                 </div>
     
                 <div class="price-details">
                     <div class="price-row">
-                        <span>Subtotal</span>
-                        <span>Rp. 350.000</span>
+                        <span>Harga Sewa/hari</span>
+                        <span id="detail-rentail-rent-per-day"></span>
                     </div>
                     <div class="price-row">
-                        <span>Tax</span>
-                        <span>0</span>
+                        <span>Lama Sewa</span>
+                        <span id="detail-rentail-rent-period"></span>
+                    </div>
+                    <div class="price-row">
+                        <span>Subtotal</span>
+                        <span id="detail-rental-subtotal"></span>
+                    </div>
+                    <div class="price-row">
+                        <span>Pph 23 (2%)</span>
+                        <span id="detail-rental-tax">0</span>
                     </div>
                 </div>
     
                 <div class="total-price">
                     <div>
-                        <h4 style="font-weight: 500;">Total Harga</h4>
-                        <p class="section-subtitle">Harga sudah termasuk PPN 12%.</p>
+                        <h4 style="font-weight: 500;">Total Pembayaran</h4>
+                        <p class="section-subtitle">Harga sudah termasuk Pph 23.</p>
                     </div>
-                    <span class="total-price-amount">350.000</span>
+                    <span class="detail-rental-total-payment"></span>
                 </div>
             </div>
         </section>
@@ -236,7 +239,7 @@
                     <h3>Tentang Kami</h3>
                     <ul>
                         <li><a href="#">Mengapa Pilih Kita</a></li>
-                        <li><a href="#">Pernyataan Misik</a></li>
+                        <li><a href="#">Pernyataan Misi</a></li>
                         <li><a href="#">Pesan Online</a></li>
                     </ul>
                 </div>

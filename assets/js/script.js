@@ -103,9 +103,9 @@ document.addEventListener('DOMContentLoaded', function() {
             reviews: 135,
             specs: {
                 passengers: 4,
-                transmission: 'Matic',
+                transmission: 'Manual',
                 cooling: 'AC',
-                door: 4
+                door: 2
             },
             price: 900000
         },
@@ -233,13 +233,23 @@ document.addEventListener('DOMContentLoaded', function() {
                         <span class="day">/hari</span>
                     </div>
                 </div>
-                <button class="btn-primary btn-rental">
+                <button class="btn-primary btn-rental" id="rental-button">
                     Rental Sekarang
                     <img src="./assets/images/icons/arrow-right.svg" alt="Arrow Right">
                 </button>
             </div>
         `;
         carsGrid.appendChild(carCard);
+
+        // Menangani klik tombol rental sekarang
+        carCard.querySelector('.btn-rental').addEventListener('click', () => {
+            if (localStorage.getItem('user_data')) {
+                localStorage.setItem('car-selected', JSON.stringify(car));
+                window.location.href = 'transaction.html';
+            } else {
+                alert('Silahkan login terlebih dahulu');
+            }
+        });
     });
 
     // testimonial data

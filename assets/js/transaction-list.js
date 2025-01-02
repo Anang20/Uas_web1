@@ -1,37 +1,12 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Sample data statis yang akan ditampilkan
-    const sampleData = [
-        { id: 1, date: '2023-05-01', va_number: 987654321, payment_method: 'BCA', customer: 'John Doe', car_name: 'Avanza', car_image: './assets/images/cars/cr-v.png', rent_duration: 3, rent_cost_per_day: 300000, amount: 150000, status: 'completed' },
-        { id: 1, date: '2023-05-01', va_number: 382473248, payment_method: 'BCA', customer: 'John Doe', car_name: 'Avanza', car_image: './assets/images/cars/cr-v.png', rent_duration: 3, rent_cost_per_day: 300000, amount: 150000, status: 'completed' },
-        { id: 1, date: '2023-05-01', va_number: 234480494, payment_method: 'BCA', customer: 'John Doe', car_name: 'Avanza', car_image: './assets/images/cars/cr-v.png', rent_duration: 3, rent_cost_per_day: 300000, amount: 150000, status: 'completed' },
-        { id: 1, date: '2023-05-01', va_number: 234480494, payment_method: 'BCA', customer: 'John Doe', car_name: 'Avanza', car_image: './assets/images/cars/cr-v.png', rent_duration: 3, rent_cost_per_day: 300000, amount: 150000, status: 'completed' },
-        { id: 1, date: '2023-05-01', va_number: 234480494, payment_method: 'BCA', customer: 'John Doe', car_name: 'Avanza', car_image: './assets/images/cars/cr-v.png', rent_duration: 3, rent_cost_per_day: 300000, amount: 150000, status: 'completed' },
-        { id: 1, date: '2023-05-01', va_number: 234480494, payment_method: 'BCA', customer: 'John Doe', car_name: 'Avanza', car_image: './assets/images/cars/cr-v.png', rent_duration: 3, rent_cost_per_day: 300000, amount: 150000, status: 'completed' },
-        { id: 1, date: '2023-05-01', va_number: 234480494, payment_method: 'BCA', customer: 'John Doe', car_name: 'Avanza', car_image: './assets/images/cars/cr-v.png', rent_duration: 3, rent_cost_per_day: 300000, amount: 150000, status: 'completed' },
-        { id: 1, date: '2023-05-01', va_number: 234480494, payment_method: 'BCA', customer: 'John Doe', car_name: 'Avanza', car_image: './assets/images/cars/cr-v.png', rent_duration: 3, rent_cost_per_day: 300000, amount: 150000, status: 'completed' },
-        { id: 1, date: '2023-05-01', va_number: 234480494, payment_method: 'BCA', customer: 'John Doe', car_name: 'Avanza', car_image: './assets/images/cars/cr-v.png', rent_duration: 3, rent_cost_per_day: 300000, amount: 150000, status: 'completed' },
-        { id: 1, date: '2023-05-01', va_number: 234480494, payment_method: 'BCA', customer: 'John Doe', car_name: 'Avanza', car_image: './assets/images/cars/cr-v.png', rent_duration: 3, rent_cost_per_day: 300000, amount: 150000, status: 'completed' },
-        { id: 1, date: '2023-05-01', va_number: 234480494, payment_method: 'BCA', customer: 'John Doe', car_name: 'Avanza', car_image: './assets/images/cars/cr-v.png', rent_duration: 3, rent_cost_per_day: 300000, amount: 150000, status: 'completed' },
-        { id: 1, date: '2023-05-01', va_number: 234480494, payment_method: 'BCA', customer: 'John Doe', car_name: 'Avanza', car_image: './assets/images/cars/cr-v.png', rent_duration: 3, rent_cost_per_day: 300000, amount: 150000, status: 'completed' },
-        { id: 1, date: '2023-05-01', va_number: 234480494, payment_method: 'BCA', customer: 'John Doe', car_name: 'Avanza', car_image: './assets/images/cars/cr-v.png', rent_duration: 3, rent_cost_per_day: 300000, amount: 150000, status: 'completed' },
-        { id: 1, date: '2023-05-01', va_number: 234480494, payment_method: 'BCA', customer: 'John Doe', car_name: 'Avanza', car_image: './assets/images/cars/cr-v.png', rent_duration: 3, rent_cost_per_day: 300000, amount: 150000, status: 'completed' },
-    ];
+document.addEventListener('DOMContentLoaded', function () {
 
-    // if (!localStorage.getItem('transactions')) {
-        localStorage.setItem('transactions', JSON.stringify(sampleData));
-    // }
-
-    // inisal pagination
+    // inisialisasi pagination
     const itemsPerPage = 5;
     let currentPage = 1;
 
     // Fungsi untuk mengambil data transaksi dari localStorage
     function getTransactions() {
-        if (localStorage.getItem('transactions')) {
-            return JSON.parse(localStorage.getItem('transactions'));
-        } else {
-            return [];
-        }
+        return JSON.parse(localStorage.getItem('transactions')) || [];
     }
 
     // Fungsi untuk memperbarui status transaksi
@@ -55,46 +30,76 @@ document.addEventListener('DOMContentLoaded', function() {
         const tableBody = document.getElementById('transactionBody');
         tableBody.innerHTML = '';  // membersihkan tabel sebelum merender baris baru
 
+        const isLoggedIn = localStorage.getItem("user_data");
+        if (!isLoggedIn) {
+            renderLoginMessage(tableBody);
+            renderPagination(0);
+            return;
+        }
+
         if (transactions.length === 0) {
-            // Tampilkan pesan "Tidak ada data" jika tidak ada transaksi
-            const noDataRow = document.createElement('tr');
-            noDataRow.innerHTML = `
-                <td colspan="10" style="text-align: center;">Anda belum pernah melakukan transaksi, mohon pilih mobil terlebih dahulu di beranda</td>
-            `;
-            tableBody.appendChild(noDataRow);
-            renderPagination(0); // Render pagination kosong
+            renderNoDataMessage(tableBody);
+            renderPagination(0);
             return;
         }
 
         // Render setiap data transaksi
-        paginatedTransactions.forEach((transaction, index) => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${startIndex + index + 1}</td>  <!-- This will display the manual number -->
-                <td>${transaction.date}</td>
-                <td>${transaction.va_number}</td>
-                <td>${transaction.payment_method}</td>
-                <td>${transaction.customer}</td>
-                <td>${transaction.car_name}</td>
-                <td>
-                    <img src="${transaction.car_image}">
-                </td>
-                <td>Rp${transaction.rent_cost_per_day.toLocaleString()}</td>
-                <td>${transaction.rent_duration.toLocaleString()} Hari</td>
-                <td>Rp ${transaction.amount.toLocaleString()}</td>
-                <td><span class="status status-${transaction.status}">${transaction.status}</span></td>
-                <td>
-                    ${transaction.status !== 'cancelled' ? `<button class="btn-danger cancel-button" data-id="${transaction.va_number}">Batalkan</button>` : ''}
-                </td>
-            `;
-            tableBody.appendChild(row);
-        });
+        paginatedTransactions.forEach((transaction, index) => renderTransactionRow(tableBody, transaction, startIndex, index));
 
         renderPagination(transactions.length);
+        addCancelButtonListeners();
+    }
 
-        // Menambahkan event listener ke tombol cancel
+    // Fungsi untuk menampilkan pesan "Harus login"
+    function renderLoginMessage(tableBody) {
+        const loginRow = document.createElement('tr');
+        loginRow.innerHTML = `
+            <td colspan="18" style="text-align: center;">Anda harus login untuk melihat transaksi. Silakan login terlebih dahulu.</td>
+        `;
+        tableBody.appendChild(loginRow);
+    }
+
+    // Fungsi untuk menampilkan pesan "Tidak ada data"
+    function renderNoDataMessage(tableBody) {
+        const noDataRow = document.createElement('tr');
+        noDataRow.innerHTML = `
+            <td colspan="18" style="text-align: center;">Anda belum pernah melakukan transaksi, mohon pilih mobil terlebih dahulu di beranda</td>
+        `;
+        tableBody.appendChild(noDataRow);
+    }
+
+    // Fungsi untuk menambahkan baris transaksi
+    function renderTransactionRow(tableBody, transaction, startIndex, index) {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${startIndex + index + 1}</td>
+            <td>${transaction.rental_date}</td>
+            <td>${transaction.va_number}</td>
+            <td>${transaction.payment_method}</td>
+            <td>Rp${transaction.rent_per_day}</td>
+            <td>${transaction.rent_period} Hari</td>
+            <td>${transaction.total_payment}</td>
+            <td>${transaction.car_name}</td>
+            <td><img src="${transaction.car_image}"></td>
+            <td>${transaction.rental_type}</td>
+            <td>${transaction.city}</td>
+            <td>${transaction.location}</td>
+            <td>${transaction.full_name}</td>
+            <td>${transaction.nik}</td>
+            <td>${transaction.phone_number}</td>
+            <td>${transaction.address}</td>
+            <td><span class="status status-${transaction.status}">${transaction.status}</span></td>
+            <td>
+                ${transaction.status !== 'cancelled' ? `<button class="btn-danger cancel-button" data-id="${transaction.va_number}">Batalkan</button>` : ''}
+            </td>
+        `;
+        tableBody.appendChild(row);
+    }
+
+    // Fungsi untuk menambahkan event listener pada tombol cancel
+    function addCancelButtonListeners() {
         document.querySelectorAll('.cancel-button').forEach(button => {
-            button.addEventListener('click', function() {
+            button.addEventListener('click', function () {
                 const vaNumber = parseInt(this.getAttribute('data-id'), 10);
                 updateTransactionStatus(vaNumber, 'cancelled');
             });
