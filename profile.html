@@ -18,8 +18,18 @@
                 <li><a href="./profile.html">Profil</a></li>
                 <li><a href="./transaction-list.html">Transaksi</a></li>
             </ul>
-            <div class="auth-buttons">
+            <div id="authButtons" class="auth-buttons">
                 <button class="btn-primary" onclick="window.location.href = '/login.html'">Login</button>
+            </div>
+            <div class="user-profile" id="userProfile">
+                U
+                <div class="popover" id="popover">
+                    <span id="userEmail"></span>
+                    <hr>
+                    <ul>
+                        <li id="logout-button">Log out</li>
+                    </ul>
+                </div>
             </div>
             <div class="burger">
                 <div class="line1"></div>
