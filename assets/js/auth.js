@@ -25,6 +25,9 @@ document.addEventListener('DOMContentLoaded', function() {
         if (email === validEmail && password === validPassword) {
             // Berhasil login
             alert('Login berhasil! Selamat datang!');
+            localStorage.setItem('user_data', JSON.stringify({
+                email: email
+            }));
             // Redirect ke halaman index.html
             window.location.href = 'index.html';
         } else {

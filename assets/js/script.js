@@ -1,4 +1,22 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // user profile
+    const authButtons = document.getElementById('authButtons');
+    const userProfile = document.getElementById('userProfile');
+    const userEmailSpan = document.getElementById('userEmail');
+    const popover = document.getElementById('popover');
+    const logoutButton = document.getElementById('logout-button');
+
+    userProfile.addEventListener('click', () => {
+        const isVisible = popover.style.display === 'block';
+        popover.style.display = isVisible ? 'none' : 'block';
+    });
+
+    // menagani logout
+    logoutButton.addEventListener('click', () => {
+        localStorage.removeItem('user_data');
+        window.location.href = 'login.html';
+    });
+    
     // hamburger menu
     const burger = document.querySelector('.burger');
     const nav = document.querySelector('.nav-links');
@@ -17,6 +35,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
         burger.classList.toggle('toggle');
     });
+
+    // menangani cek status user sudah login atau belum di header
+    function checkUserStatus() {
+        const userData = localStorage.getItem('user_data');
+        if (userData) {
+            // Jika user login
+            const user = JSON.parse(userData);
+            userEmailSpan.textContent = user.email;
+            authButtons.style.display = 'none';
+            userProfile.style.display = 'inline-block';
+        } else {
+            // Jika user belum login
+            authButtons.style.display = 'flex';
+            userProfile.style.display = 'none';
+        }
+    }
+    checkUserStatus();
     
     // slider brand
     const brandSliderTrack = document.querySelector('.brands-slider-track');
@@ -27,23 +62,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const clone = img.cloneNode(true);
         brandSliderTrack.appendChild(clone);
     });
-
-    let position = 0; // Posisi awal slider
-    const speed = 2; // Kecepatan pergeseran (px per frame)
-
-    function animateSlider() {
-        position -= speed;
-
-        // Jika slider telah melewati elemen pertama, reset posisi ke awal
-        if (Math.abs(position) >= images[0].offsetWidth + 50) {
-            position = 0;
-        }
-
-        brandSliderTrack.style.transform = `translateX(${position}px)`;
-        requestAnimationFrame(animateSlider);
-    }
-
-    animateSlider();
 
     function generateStars(rating) {
         const fullStars = Math.floor(rating); // Bintang penuh
