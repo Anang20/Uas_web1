@@ -473,11 +473,20 @@ header {
 }
 
 .car-specs {
-    display: flex;
-    gap: 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 24px;
     color: var(--text-secondary);
     font-size: 14px;
     margin-bottom: 16px;
+}
+
+.car-spec {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 5px;
 }
 
 .car-price {
@@ -494,6 +503,15 @@ header {
 .day {
     color: var(--text-secondary);
     font-size: 14px;
+}
+
+.btn-rental {
+    margin-top: 0.9rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
 }
 
 /* Testimonials Section */

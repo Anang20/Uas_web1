@@ -88,8 +88,12 @@ document.addEventListener('DOMContentLoaded', function() {
             image: './assets/images/cars/cr-v.png',
             rating: 5,
             reviews: 145,
-            passengers: 4,
-            transmission: 'Auto',
+            specs: {
+                passengers: 4,
+                transmission: 'Matic',
+                cooling: 'AC',
+                door: 4
+            },
             price: 1100000
         },
         {
@@ -97,8 +101,12 @@ document.addEventListener('DOMContentLoaded', function() {
             image: './assets/images/cars/daihatsu-terios.png',
             rating: 5,
             reviews: 135,
-            passengers: 4,
-            transmission: 'Auto',
+            specs: {
+                passengers: 4,
+                transmission: 'Matic',
+                cooling: 'AC',
+                door: 4
+            },
             price: 900000
         },
         {
@@ -106,8 +114,12 @@ document.addEventListener('DOMContentLoaded', function() {
             image: './assets/images/cars/ertiga.png',
             rating: 4.9,
             reviews: 125,
-            passengers: 4,
-            transmission: 'Auto',
+            specs: {
+                passengers: 4,
+                transmission: 'Matic',
+                cooling: 'AC',
+                door: 4
+            },
             price: 850000
         },
         {
@@ -115,8 +127,12 @@ document.addEventListener('DOMContentLoaded', function() {
             image: './assets/images/cars/brio.png',
             rating: 4,
             reviews: 125,
-            passengers: 4,
-            transmission: 'Auto',
+            specs: {
+                passengers: 4,
+                transmission: 'Matic',
+                cooling: 'AC',
+                door: 4
+            },
             price: 700000
         },
         {
@@ -124,8 +140,12 @@ document.addEventListener('DOMContentLoaded', function() {
             image: './assets/images/cars/innova-2.0.png',
             rating: 4.5,
             reviews: 155,
-            passengers: 2,
-            transmission: 'Auto',
+            specs: {
+                passengers: 4,
+                transmission: 'Matic',
+                cooling: 'AC',
+                door: 4
+            },
             price: 750000
         },
         {
@@ -133,8 +153,12 @@ document.addEventListener('DOMContentLoaded', function() {
             image: './assets/images/cars/innova-2.5.png',
             rating: 4.8,
             reviews: 155,
-            passengers: 2,
-            transmission: 'Auto',
+            specs: {
+                passengers: 4,
+                transmission: 'Matic',
+                cooling: 'AC',
+                door: 4
+            },
             price: 750000
         },
         {
@@ -142,8 +166,12 @@ document.addEventListener('DOMContentLoaded', function() {
             image: './assets/images/cars/rush.png',
             rating: 5.0,
             reviews: 155,
-            passengers: 2,
-            transmission: 'Auto',
+            specs: {
+                passengers: 4,
+                transmission: 'Matic',
+                cooling: 'AC',
+                door: 4
+            },
             price: 1000000
         },
         {
@@ -151,8 +179,12 @@ document.addEventListener('DOMContentLoaded', function() {
             image: './assets/images/cars/toyota-avanza.png',
             rating: 4.9,
             reviews: 155,
-            passengers: 2,
-            transmission: 'Auto',
+            specs: {
+                passengers: 4,
+                transmission: 'Matic',
+                cooling: 'AC',
+                door: 4
+            },
             price: 950000
         },
     ];
@@ -177,16 +209,34 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 </div>
                 <div class="car-specs">
-                    <span>${car.passengers} Passengers</span>
-                    <span>${car.transmission}</span>
+                    <div class="car-spec">
+                        <img src="./assets/images/icons/passenger.svg" alt="Passenger">
+                        <span>${car.specs.passengers} Orang</span>
+                    </div>
+                    <div class="car-spec">
+                        <img src="./assets/images/icons/transmision.svg" alt="Transmission">
+                        <span>${car.specs.transmission}</span>
+                    </div>
+                    <div class="car-spec">
+                        <img src="./assets/images/icons/cooling.svg" alt="Cooling">
+                        <span>${car.specs.cooling}</span>
+                    </div>
+                    <div class="car-spec">
+                        <img src="./assets/images/icons/door.svg" alt="Door">
+                        <span>${car.specs.door} Pintu</span>
+                    </div>
                 </div>
                 <div class="car-price">
+                    <span>Harga</span>
                     <div>
                         <span class="price">Rp ${Intl.NumberFormat('id-ID').format(car.price)}</span>
                         <span class="day">/hari</span>
                     </div>
-                    <button class="btn-primary">Rental</button>
                 </div>
+                <button class="btn-primary btn-rental">
+                    Rental Sekarang
+                    <img src="./assets/images/icons/arrow-right.svg" alt="Arrow Right">
+                </button>
             </div>
         `;
         carsGrid.appendChild(carCard);
