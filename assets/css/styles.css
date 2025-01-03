@@ -70,6 +70,12 @@ header {
     gap: 16px;
 }
 
+.right-menu-button {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
 .user-profile {
     position: relative;
     display: inline-block;
@@ -280,7 +286,7 @@ header {
     overflow: hidden;
     position: relative;
     width: 100%;
-    height: 100px; /* Sesuaikan dengan tinggi gambar */
+    height: 100px;
 }
 
 .brands-slider-track {
@@ -289,8 +295,8 @@ header {
 }
 
 .brands-slider-track img {
-    height: 100px; /* Sesuaikan tinggi gambar */
-    margin-right: 50px; /* Jarak antar gambar */
+    height: 100px;
+    margin-right: 50px;
     opacity: 0.5;
     transition: opacity 0.3s ease;
 }
@@ -582,6 +588,22 @@ header {
 .team-card p {
     color: var(--text-secondary);
 }
+
+.social-media-team {
+    margin-top: 1rem;
+}
+
+.social-media-team ul {
+    display: inline-flex;
+    list-style: none;
+    align-items: center;
+    gap: 10px;
+}
+
+.social-media-team img {
+    height: 2rem;
+}
+
 /* end profile page */
 
 /* start transaction page */
@@ -915,6 +937,22 @@ footer {
         grid-template-columns: 1fr;
     }
 
+    .hero-image img {
+        width: 70%;
+        float: right;
+        height: auto;
+        transform: scale(1.2);
+    }
+
+    .brands {
+        padding: 15px 0;
+    }
+
+    .brands-slider-track img {
+        height: 60px;
+        margin-right: 40px;
+    }
+
     .cars-grid {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -996,8 +1034,29 @@ footer {
         transform: rotate(45deg) translate(-5px, -6px);
     }
 
+    .hero::before {
+        right: -550px;
+        bottom: -500px;
+    }
+
+    .hero-image img {
+        width: 100%;
+        float: right;
+        height: auto;
+        transform: scale(1.2);
+    }
+
     .steps-grid {
         grid-template-columns: 1fr;
+    }
+
+    .brands {
+        padding: 15px 0;
+    }
+
+    .brands-slider-track img {
+        height: 40px;
+        margin-right: 20px;
     }
 
     .features-image {
